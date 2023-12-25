@@ -13,26 +13,29 @@
         android:theme="@style/Theme.DemoProject"
         tools:targetApi="31">
         <activity
-            android:name=".View.activity.HomeActivity"
-            android:exported="false" />
+            android:name=".screens.Update.UpdateActivity"
+            android:exported="false"
+            />
         <activity
-            android:name=".View.activity.LoginActivity"
-            android:exported="false" />
+            android:name=".screens.Home.HomeActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
-            android:name=".View.activity.SplashActivity"
-            android:exported="false" />
+            android:name=".screens.Login.LoginActivity"
+            android:exported="true" />
         <activity
-            android:name=".View.activity.SignUpActivity"
-            android:exported="false" />
-        <activity
-            android:name=".View.activity.MainActivity"
-            android:exported="true">
+            android:name=".UI.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".screens.SignUp.MainActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

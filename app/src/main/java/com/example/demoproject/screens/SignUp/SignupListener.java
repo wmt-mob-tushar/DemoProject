@@ -1,4 +1,4 @@
-package com.example.demoproject.View.listener;
+package com.example.demoproject.screens.SignUp;
 
 public interface SignupListener {
 

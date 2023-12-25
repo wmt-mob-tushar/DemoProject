@@ -10,4 +10,9 @@
     <string name="login">login</string>
     <string name="home_page">Home Page</string>
     <string name="log_out">Log Out</string>
+
+    <string name="float_modal_btn" />
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="date">date</string>
 </resources>

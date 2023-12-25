@@ -2,12 +2,14 @@ package com.example.demoproject.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.example.demoproject.Model.SignupModel;
+import com.example.demoproject.screens.SignUp.SignupModel;
+import com.example.demoproject.screens.Update.UpdateModel;
 
 public class UserDatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE = "User_db";
@@ -56,6 +58,64 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         }else {
             return false;
         }
+    }
+
+    public boolean checkUser(String email) {
+        SQLiteDatabase database = this.getReadableDatabase();
+
+        String query = "SELECT * FROM "+TABLE+" WHERE EMAIL = '"+email+"'";
+
+        if(database.rawQuery(query, null).getCount() > 0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+//  check login user is exist in database or not
+    public boolean checkUserLogin(String email, String password) {
+        SQLiteDatabase database = this.getReadableDatabase();
+
+        String query = "SELECT * FROM "+TABLE+" WHERE EMAIL = '"+email+"' AND PASSWORD = '"+password+"'";
+
+        if(database.rawQuery(query, null).getCount() > 0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+
+//    GET USER DETAILED ON EMAIL
+    public UpdateModel getUserDataOnEmail(String email){
+        SQLiteDatabase database = this.getReadableDatabase();
+
+        String query = "SELECT * FROM "+TABLE+" WHERE EMAIL = '"+email+"'";
+
+        UpdateModel UpdateModel = new UpdateModel();
+
+        if(database.rawQuery(query, null).getCount() > 0){
+            Cursor cursor = database.rawQuery(query, null);
+            cursor.moveToFirst();
+            UpdateModel.firstName = cursor.getString(1);
+            UpdateModel.lastName = cursor.getString(2);
+            UpdateModel.email = cursor.getString(3);
+            UpdateModel.password = cursor.getString(4);
+        }
+
+        return UpdateModel;
+    }
+
+    public void updateData(UpdateModel updateModel, String email){
+        SQLiteDatabase database = this.getWritableDatabase();
+
+        ContentValues cv = new ContentValues();
+        cv.put("FIRST_NAME",updateModel.firstName);
+        cv.put("LAST_NAME",updateModel.lastName);
+        cv.put("EMAIL",updateModel.email);
+        cv.put("PASSWORD",updateModel.password);
+
+        database.update(TABLE,cv,"EMAIL = ?",new String[]{String.valueOf(email)});
     }
 
 }

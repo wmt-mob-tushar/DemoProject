@@ -179,8 +179,18 @@
             app:cornerRadius="8dp"
             android:textColor="#fff"
             style="?android:attr/buttonBarButtonStyle" />
-
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Invalid input"
+        android:textColor="#FF0000"
+        android:gravity="center"
+        android:id="@+id/txt_invalid"
+        android:visibility="gone"
+        android:textSize="15sp"
+        android:textStyle="bold"
+       />
 
 </LinearLayout>

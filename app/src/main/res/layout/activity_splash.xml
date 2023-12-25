@@ -8,7 +8,7 @@
     android:gravity="center"
     android:background="#A3D9DB"
     android:id="@+id/splash_screen"
-    tools:context=".View.activity.SplashActivity">
+    tools:context=".UI.SplashActivity">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animationView"

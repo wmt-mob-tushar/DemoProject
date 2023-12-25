@@ -1,25 +1,23 @@
-package com.example.demoproject.View.activity;
+package com.example.demoproject.screens.SignUp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.demoproject.Model.SignupModel;
-import com.example.demoproject.Presenter.SignUpPresenter;
 import com.example.demoproject.R;
-import com.example.demoproject.View.listener.SignupListener;
+import com.example.demoproject.screens.Login.LoginActivity;
+import com.example.demoproject.screens.SignUp.SignUpPresenter;
+import com.example.demoproject.screens.SignUp.SignupListener;
+import com.example.demoproject.screens.SignUp.SignupModel;
 
-public class MainActivity extends AppCompatActivity implements SignupListener {
-
+public class MainActivity extends AppCompatActivity implements SignupListener{
     Button button,signuptologinbutton;
     TextView firstnameEditView, lastnameEditView, emailEditView, passwordEditView, confirmPasswordEditView;
-
     SignUpPresenter signUpPresenter;
 
     @Override
@@ -82,9 +80,8 @@ public class MainActivity extends AppCompatActivity implements SignupListener {
     public void onSuccess(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
-    @Override
-    public void onError(String message){
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    public void onError(String invalidInput) {
+        Toast.makeText(this, invalidInput, Toast.LENGTH_SHORT).show();
     }
 
 }

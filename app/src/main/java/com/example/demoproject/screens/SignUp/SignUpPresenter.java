@@ -1,12 +1,9 @@
-package com.example.demoproject.Presenter;
+package com.example.demoproject.screens.SignUp;
 
 import android.content.Intent;
-import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.Toast;
 
-import com.example.demoproject.Model.SignupModel;
-import com.example.demoproject.View.activity.LoginActivity;
-import com.example.demoproject.View.activity.MainActivity;
+import com.example.demoproject.screens.Login.LoginActivity;
 import com.example.demoproject.database.UserDatabaseHelper;
 
 public class SignUpPresenter{
@@ -22,8 +19,14 @@ public class SignUpPresenter{
     }
 
     public static void signup(String firstname, String lastname, String email, String password, String confirmPassword) {
+
         if (!signupModel.isValid()) {
-            Toast.makeText(Mainactivity, "Fill the proper detailed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Mainactivity, "Invalid Input", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!signupModel.email()) {
+            Toast.makeText(Mainactivity, "Invalid Email", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -38,16 +41,22 @@ public class SignUpPresenter{
         signupModel.email = email;
         signupModel.password = password;
 
-        //insert into database
-        database.SignupInsertData(signupModel);
+//      if user already exists
+        if (database.checkUser(signupModel.email)) {
+            Toast.makeText(Mainactivity, "User already exists", Toast.LENGTH_SHORT).show();
+        } else {
+            database.SignupInsertData(signupModel);
 
-        if(Mainactivity != null){
+//          if(Mainactivity != null){
             Mainactivity.onSuccess("Signup Successful");
             Intent intent = new Intent(Mainactivity, LoginActivity.class);
+            intent.putExtra("email", email);
             Mainactivity.startActivity(intent);
-        }else{
-            Mainactivity.onError("Signup Failed");
+//            }else{
+//                Mainactivity.onError("Signup Failed");
+//            }
         }
+
     }
 
 }
