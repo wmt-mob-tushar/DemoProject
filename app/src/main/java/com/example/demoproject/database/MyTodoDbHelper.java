@@ -20,89 +20,94 @@ public class MyTodoDbHelper extends SQLiteOpenHelper {
 //    private static final String KEY_ID = "ID";
 //    private static final String KEY_TITLE = "TITLE";
 //    private static final String KEY_DESCRIPTION = "DESCRIPTION";
+//    private static final String KEY_DATE = "DATE";
 
     public MyTodoDbHelper(@Nullable Context context) {
-        super(context, DB_NAME,null,DB_VERSION);
+        super(context, DB_NAME, null, DB_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String query = "CREATE TABLE "+TABLE_NAME+" (ID INTEGER PRIMARY KEY AUTOINCREMENT, TITLE TEXT, DESCRIPTION TEXT)";
+        String query = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, TITLE TEXT, DESCRIPTION TEXT, DATE TEXT)";
         db.execSQL(query);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        String query = "DROP TABLE IF EXISTS "+TABLE_NAME;
+        String query = "DROP TABLE IF EXISTS " + TABLE_NAME;
         db.execSQL(query);
     }
 
     //    insert data in database
-    public void insertData(String title, String description){
+    public void insertData(String title, String description) {
         SQLiteDatabase database = this.getWritableDatabase();
 
         ContentValues cv = new ContentValues();
 
         Date date = new Date(System.currentTimeMillis());
 
-        cv.put("TITLE",title);
-        cv.put("DESCRIPTION",description);
+        cv.put("TITLE", title);
+        cv.put("DESCRIPTION", description);
+        cv.put("DATE", date.toString());
 
-        database.insert(TABLE_NAME,null,cv);
+        database.insert(TABLE_NAME, null, cv);
 
 //        String query = "INSERT INTO "+TABLE_NAME+" (TITLE,DESCRIPTION) VALUES ('"+title+"','"+description+"')";
 //        database.execSQL(query);
     }
 
     //    update data in database
-    public void updateData(String title, String description, int id){
+    public void updateData(String title, String description, int id) {
         SQLiteDatabase database = this.getWritableDatabase();
 
-
         ContentValues cv = new ContentValues();
-        cv.put("TITLE",title);
-        cv.put("DESCRIPTION",description);
+        cv.put("TITLE", title);
+        cv.put("DESCRIPTION", description);
 
-        database.update(TABLE_NAME,cv,"ID = ?",new String[]{String.valueOf(id)});
+        database.update(TABLE_NAME, cv, "ID = ?", new String[]{String.valueOf(id)});
 
 //        String query = "UPDATE "+TABLE_NAME+" SET TITLE = '"+title+"', DESCRIPTION = '"+description+"' WHERE ID = "+id;
 //        database.execSQL(query);
     }
 
     //    delete data from database
-    public void deleteData(int id){
+    public void deleteData(int id) {
         SQLiteDatabase database = this.getWritableDatabase();
 
         ContentValues cv = new ContentValues();
 
-        database.delete(TABLE_NAME,"ID = ?",new String[]{String.valueOf(id)});
+        database.delete(TABLE_NAME, "ID = ?", new String[]{String.valueOf(id)});
 //        String query = "DELETE FROM "+TABLE_NAME+" WHERE ID = "+id;
 //        database.execSQL(query);
     }
 
     //  get all data from database
-    public ArrayList<TodoModel> getAllData(){
+    public ArrayList<TodoModel> getAllData() {
 
         SQLiteDatabase database = this.getReadableDatabase();
 
         ArrayList<TodoModel> arrayList = new ArrayList<>();
 
-        String query = "SELECT * FROM "+TABLE_NAME;
+        String query = "SELECT * FROM " + TABLE_NAME;
 
         //this cursor will point to the table
-        Cursor cursor = database.rawQuery(query,null);
+        Cursor cursor = database.rawQuery(query, null);
 
         //this loop will run until the last row of the table
-        while(cursor.moveToNext()){
+        while (cursor.moveToNext()) {
             TodoModel todoModel = new TodoModel();
             todoModel.id = cursor.getInt(0);
             todoModel.title = cursor.getString(1);
             todoModel.description = cursor.getString(2);
+            todoModel.date = cursor.getString(3);
 
             arrayList.add(todoModel);
         }
 
         return arrayList;
     }
+
 }
+
+
 

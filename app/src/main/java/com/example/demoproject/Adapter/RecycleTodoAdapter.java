@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.demoproject.R;
 import com.example.demoproject.database.MyTodoDbHelper;
 import com.example.demoproject.screens.Home.TodoModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ public class RecycleTodoAdapter extends RecyclerView.Adapter<RecycleTodoAdapter.
         TodoModel todoModel = arrayList.get(position);
         holder.title.setText(arrayList.get(position).title);
         holder.description.setText(arrayList.get(position).description);
+        holder.date.setText(arrayList.get(position).date);
 
         holder.btnUpdate.setOnClickListener(v -> {
             MyTodoDbHelper database = new MyTodoDbHelper(context);
@@ -116,15 +118,19 @@ public class RecycleTodoAdapter extends RecyclerView.Adapter<RecycleTodoAdapter.
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        TextView title,description;
+        TextView title,description,date;
         ImageButton btnUpdate,btnDelete;
+
+        FloatingActionButton btn_filter;
         public ViewHolder(View itemView) {
             super(itemView);
 
             title = itemView.findViewById(R.id.tv_title);
             description = itemView.findViewById(R.id.tv_description);
+            date = itemView.findViewById(R.id.tv_date);
             btnUpdate = itemView.findViewById(R.id.btn_update);
             btnDelete = itemView.findViewById(R.id.btn_delete);
+
         }
     }
 }

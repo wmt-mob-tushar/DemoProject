@@ -27,10 +27,9 @@ import java.util.ArrayList;
 public class HomeActivity extends AppCompatActivity {
 
     Toolbar toolbar;
-
     ArrayList<TodoModel> arrayList = new ArrayList<>();
     RecyclerView recyclerView;
-    FloatingActionButton btnAddContact;
+    FloatingActionButton btnAddContact,btnFilter;
     RecycleTodoAdapter adapter;
 
     @Override
@@ -97,8 +96,28 @@ public class HomeActivity extends AppCompatActivity {
                     dialog.dismiss();
                 }
             });
-
             dialog.show();
+        });
+
+//        filter button to filter data by date
+        btnFilter = findViewById(R.id.btn_filter);
+//        flag for toogle filter
+        final boolean[] flag = {false};
+
+        btnFilter.setOnClickListener(v -> {
+            MyTodoDbHelper database = new  MyTodoDbHelper(this);
+            arrayList = database.getAllData();
+
+            if(flag[0]) {
+                arrayList.sort((a, b) -> a.date.compareTo(b.date));
+                flag[0] = false;
+            }else{
+                arrayList.sort((a, b) -> b.date.compareTo(a.date));
+                flag[0] = true;
+            }
+
+            adapter = new RecycleTodoAdapter(this,arrayList);
+            recyclerView.setAdapter(adapter);
         });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));// define layout of recycle views

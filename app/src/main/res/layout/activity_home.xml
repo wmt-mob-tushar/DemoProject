@@ -49,4 +49,16 @@
         android:src="@android:drawable/ic_input_add"
         app:backgroundTint="#4173F1" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100sp"
+        android:layout_marginEnd="22sp"
+        android:contentDescription="@string/float_modal_btn"
+        android:src="@android:drawable/ic_menu_sort_by_size"
+        app:backgroundTint="#4173F1" />
+
 </RelativeLayout>
