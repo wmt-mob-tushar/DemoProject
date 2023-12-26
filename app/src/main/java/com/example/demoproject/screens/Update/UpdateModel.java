@@ -1,6 +1,8 @@
 package com.example.demoproject.screens.Update;
 
 public class UpdateModel {
+
+    public Integer id;
     public String firstName;
     public String lastName;
     public String email;
@@ -13,8 +15,20 @@ public class UpdateModel {
         this.password = password;
     }
 
+    public UpdateModel(Integer id,String firstname, String lastname, String email, String password) {
+        this.firstName = firstname;
+        this.lastName = lastname;
+        this.email = email;
+        this.password = password;
+        this.id = id;
+    }
+
     public UpdateModel() {
 
+    }
+
+    public Integer getId() {
+        return id;
     }
     public String getFirstName() {
         return firstName;

@@ -41,6 +41,14 @@
            android:textStyle="bold" />
 
        <TextView
+           android:id="@+id/tv_user_id"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+              android:text="User Id"
+              android:textSize="24sp" />
+
+
+       <TextView
            android:id="@+id/tv_first_name"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"

@@ -83,5 +83,4 @@ public class MainActivity extends AppCompatActivity implements SignupListener{
     public void onError(String invalidInput) {
         Toast.makeText(this, invalidInput, Toast.LENGTH_SHORT).show();
     }
-
 }

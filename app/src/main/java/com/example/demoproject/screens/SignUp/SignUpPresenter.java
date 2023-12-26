@@ -48,7 +48,7 @@ public class SignUpPresenter{
             database.SignupInsertData(signupModel);
 
 //          if(Mainactivity != null){
-            Mainactivity.onSuccess("Signup Successful");
+            Toast.makeText(Mainactivity, "Signup Successful", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(Mainactivity, LoginActivity.class);
             intent.putExtra("email", email);
             Mainactivity.startActivity(intent);

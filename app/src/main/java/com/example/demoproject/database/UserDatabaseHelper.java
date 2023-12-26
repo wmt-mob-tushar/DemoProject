@@ -85,7 +85,6 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-
 //    GET USER DETAILED ON EMAIL
     public UpdateModel getUserDataOnEmail(String email){
         SQLiteDatabase database = this.getReadableDatabase();
@@ -97,6 +96,7 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         if(database.rawQuery(query, null).getCount() > 0){
             Cursor cursor = database.rawQuery(query, null);
             cursor.moveToFirst();
+            UpdateModel.id = cursor.getInt(0);
             UpdateModel.firstName = cursor.getString(1);
             UpdateModel.lastName = cursor.getString(2);
             UpdateModel.email = cursor.getString(3);
@@ -106,7 +106,7 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         return UpdateModel;
     }
 
-    public void updateData(UpdateModel updateModel, String email){
+    public void updateData(UpdateModel updateModel, Integer id){
         SQLiteDatabase database = this.getWritableDatabase();
 
         ContentValues cv = new ContentValues();
@@ -115,7 +115,20 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         cv.put("EMAIL",updateModel.email);
         cv.put("PASSWORD",updateModel.password);
 
-        database.update(TABLE,cv,"EMAIL = ?",new String[]{String.valueOf(email)});
+//        database.update(TABLE,cv,"EMAIL = ?",new String[]{String.valueOf(email)});
+        database.update(TABLE,cv,"ID = ?",new String[]{String.valueOf(id)});
+    }
+
+
+    public int getUserId(String email){
+        SQLiteDatabase database = this.getReadableDatabase();
+
+        String query = "SELECT * FROM "+TABLE+" WHERE EMAIL = '"+email+"'";
+
+        Cursor cursor = database.rawQuery(query, null);
+        cursor.moveToFirst();
+        int id = cursor.getInt(0);
+        return id;
     }
 
 }

@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.demoproject.R;
@@ -21,6 +22,8 @@ public class UpdateActivity extends AppCompatActivity implements UpdateListener 
     Toolbar toolbar;
 
     Button updatebtn, logoutbtn;
+
+    TextView UserID;
 
     EditText firstnameEditView, lastnameEditView, emailEditView, passwordEditView;
 
@@ -48,19 +51,22 @@ public class UpdateActivity extends AppCompatActivity implements UpdateListener 
         emailEditView.setText(user.getEmail());
         passwordEditView.setText(user.getPassword());
 
+        UserID.setText("User ID: " + user.getId());
+
 //      update button
         updatebtn.setOnClickListener(view -> {
             String firstname = firstnameEditView.getText().toString();
             String lastname = lastnameEditView.getText().toString();
             String email1 = emailEditView.getText().toString();
             String password = passwordEditView.getText().toString();
+            Integer id = user.getId();
 
-            UpdateModel UpdateModel = new UpdateModel(firstname, lastname, email1, password);
-
+//            UpdateModel UpdateModel = new UpdateModel(firstname, lastname, email1, password);
+            UpdateModel UpdateModel = new UpdateModel(id, firstname, lastname, email1, password);
             //Presenter
             UpdatePresenter updatePresenter = new UpdatePresenter(this, UpdateModel);
 
-            updatePresenter.update(firstname, lastname, email1, password);
+            updatePresenter.update(id,firstname, lastname, email1, password);
         });
 
 //      log out
@@ -84,6 +90,8 @@ public class UpdateActivity extends AppCompatActivity implements UpdateListener 
         lastnameEditView = findViewById(R.id.et_last_name_update);
         emailEditView = findViewById(R.id.et_email_update);
         passwordEditView = findViewById(R.id.et_password_update);
+
+        UserID = findViewById(R.id.tv_user_id);
     }
 
     @Override

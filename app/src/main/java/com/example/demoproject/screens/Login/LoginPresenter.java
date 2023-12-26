@@ -4,6 +4,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 import com.example.demoproject.database.UserDatabaseHelper;
 import com.example.demoproject.screens.Home.HomeActivity;
@@ -22,17 +23,20 @@ public class LoginPresenter {
     public static void login(String email, String password) {
 
         if (!loginModal.isValid()) {
-            loginActivity.onError("Invalid Input");
+//            loginActivity.onError("Invalid Input");
+            Toast.makeText(loginActivity, "Invalid Input", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (!loginModal.email()) {
-            loginActivity.onError("Invalid Email");
+//            loginActivity.onError("Invalid Email");
+            Toast.makeText(loginActivity, "Invalid Email", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (!loginModal.password()) {
-            loginActivity.onError("Invalid Password");
+//            loginActivity.onError("Invalid Password");
+            Toast.makeText(loginActivity, "Invalid Password", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -40,9 +44,11 @@ public class LoginPresenter {
         loginModal.password = password;
 
         if(!database.checkUserLogin(loginModal.email, loginModal.password)){
-            loginActivity.onError("Invalid Credentials");
+//            loginActivity.onError("Invalid Credentials");
+            Toast.makeText(loginActivity, "Invalid Credentials", Toast.LENGTH_SHORT).show();
         }else{
-            loginActivity.onSuccess("Login Successful");
+//            loginActivity.onSuccess("Login Successful");
+            Toast.makeText(loginActivity, "Login successful", Toast.LENGTH_SHORT).show();
 
             Intent intent = new Intent(loginActivity, HomeActivity.class);
             loginActivity.startActivity(intent);

@@ -28,7 +28,7 @@ public class MyTodoDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String query = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, TITLE TEXT, DESCRIPTION TEXT, DATE TEXT)";
+        String query = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, TITLE TEXT, DESCRIPTION TEXT,DATE TEXT)";
         db.execSQL(query);
     }
 
@@ -52,7 +52,7 @@ public class MyTodoDbHelper extends SQLiteOpenHelper {
 
         database.insert(TABLE_NAME, null, cv);
 
-//        String query = "INSERT INTO "+TABLE_NAME+" (TITLE,DESCRIPTION) VALUES ('"+title+"','"+description+"')";
+//        String query = "INSERT INTO " + TABLE_NAME + " (TITLE, DESCRIPTION, DATE) VALUES ('" + title + "','" + description + "','" + date.toString() + "')";
 //        database.execSQL(query);
     }
 
@@ -66,8 +66,6 @@ public class MyTodoDbHelper extends SQLiteOpenHelper {
 
         database.update(TABLE_NAME, cv, "ID = ?", new String[]{String.valueOf(id)});
 
-//        String query = "UPDATE "+TABLE_NAME+" SET TITLE = '"+title+"', DESCRIPTION = '"+description+"' WHERE ID = "+id;
-//        database.execSQL(query);
     }
 
     //    delete data from database
@@ -88,7 +86,7 @@ public class MyTodoDbHelper extends SQLiteOpenHelper {
 
         ArrayList<TodoModel> arrayList = new ArrayList<>();
 
-        String query = "SELECT * FROM " + TABLE_NAME;
+        String query = "SELECT * FROM " + TABLE_NAME + " ORDER BY DATE DESC";
 
         //this cursor will point to the table
         Cursor cursor = database.rawQuery(query, null);

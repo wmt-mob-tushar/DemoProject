@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity implements LoginListener{
             String password = passwordEditView.getText().toString();
 
           //just for debugging
-//         System.out.println("LoginActivityDebugger : email : " + email + " password : " + password);
+//         System.out.println("LoginActivityDebugger " + email + " " + password);
 
             LoginModal loginModel = new LoginModal(email, password);
 
