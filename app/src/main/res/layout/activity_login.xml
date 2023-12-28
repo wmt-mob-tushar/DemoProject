@@ -43,7 +43,7 @@
         android:padding="10dp"
         android:layout_marginVertical="10dp"
         android:layout_marginHorizontal="20dp"
-        android:autofillHints="Email" />
+        android:hint="Email" />
 
     <TextView
         android:id="@+id/txt_password"
@@ -62,7 +62,7 @@
         android:padding="10dp"
         android:layout_marginVertical="10dp"
         android:layout_marginHorizontal="20dp"
-        android:autofillHints="Email" />
+        android:hint="Password" />
 
     <Button
         android:id="@+id/btn_login"

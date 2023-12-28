@@ -27,7 +27,7 @@ public class HomeActivity extends AppCompatActivity implements HomeInterface.Vie
     ArrayList<TodoModel> arrayList = new ArrayList<>();
     RecyclerView recyclerView;
     EditText etTitle,etDescription;
-    Button btnAdd; 
+    Button btnAdd;
     FloatingActionButton btnAddTodo;
     RecycleTodoAdapter adapter;
     SQLiteDbHelper database;

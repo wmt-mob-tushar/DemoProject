@@ -127,8 +127,6 @@ public class RecycleTodoAdapter extends RecyclerView.Adapter<RecycleTodoAdapter.
     public static class ViewHolder extends RecyclerView.ViewHolder{
         TextView title,description,date;
         ImageButton btnUpdate,btnDelete;
-
-        FloatingActionButton btn_filter;
         public ViewHolder(View itemView) {
             super(itemView);
 
@@ -137,7 +135,6 @@ public class RecycleTodoAdapter extends RecyclerView.Adapter<RecycleTodoAdapter.
             date = itemView.findViewById(R.id.tv_date);
             btnUpdate = itemView.findViewById(R.id.btn_update);
             btnDelete = itemView.findViewById(R.id.btn_delete);
-
         }
     }
 }
