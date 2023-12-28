@@ -10,4 +10,11 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
 
     </style>
+
+<!--    no action bar-->
+    <style name="Theme.DemoProject.NoActionBar" parent="Base.Theme.DemoProject">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
 </resources>

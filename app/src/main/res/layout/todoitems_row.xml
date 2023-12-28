@@ -9,8 +9,9 @@
         android:id="@+id/card_todo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="8dp"
-        android:layout_margin="4dp"
+        app:cardCornerRadius="10dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="5dp"
         >
 
         <LinearLayout
@@ -18,7 +19,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/card_row"
             android:padding="7dp"
-            android:background="#6B3A4149"
+            android:background="#7791AAED"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -67,23 +68,22 @@
 
                 <ImageButton
                     android:id="@+id/btn_update"
-                    android:layout_width="35sp"
-                    android:layout_height="35sp"
+                    android:layout_width="25sp"
+                    android:layout_height="25sp"
                     android:src="@drawable/edit_pen_icon"
                     android:background="@null"
                     android:clickable="true"
-                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginHorizontal="12dp"
                     />
-
 
                 <ImageButton
                     android:id="@+id/btn_delete"
-                    android:layout_width="35sp"
-                    android:layout_height="35sp"
+                    android:layout_width="25sp"
+                    android:layout_height="25sp"
                     android:src="@drawable/recycle_bin_icon"
                     android:background="@null"
                     android:clickable="true"
-                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginHorizontal="12dp"
                     />
 
 

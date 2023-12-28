@@ -1,64 +1,47 @@
 package com.example.demoproject.screens.SignUp;
-
-import android.content.Intent;
-import android.widget.Toast;
-
-import com.example.demoproject.screens.Login.LoginActivity;
-import com.example.demoproject.database.UserDatabaseHelper;
+import com.example.demoproject.database.SQLiteDbHelper;
 
 public class SignUpPresenter{
 
     static MainActivity Mainactivity;
     static SignupModel signupModel;
-    static UserDatabaseHelper database;
+    static SQLiteDbHelper database;
 
     public SignUpPresenter(MainActivity Mainactivity, SignupModel signupModel) {
         SignUpPresenter.Mainactivity = Mainactivity;
         SignUpPresenter.signupModel = signupModel;
-        database = new UserDatabaseHelper(Mainactivity);
+        database = new SQLiteDbHelper(Mainactivity);
     }
 
-    public static void signup(String firstname, String lastname, String email, String password, String confirmPassword) {
-
-        if (!signupModel.isValid()) {
-            Toast.makeText(Mainactivity, "Invalid Input", Toast.LENGTH_SHORT).show();
+    public static void signup(SignupModel signupModel) {
+        if (!signupModel.firstName()) {
+            Mainactivity.onError("First Name is not valid");
             return;
         }
-
+        if (!signupModel.lastName()) {
+            Mainactivity.onError("Last Name is not valid");
+            return;
+        }
         if (!signupModel.email()) {
-            Toast.makeText(Mainactivity, "Invalid Email", Toast.LENGTH_SHORT).show();
+            Mainactivity.onError("Email is not valid");
             return;
         }
-
-        if (!signupModel.confirmPassword(confirmPassword)) {
-            Toast.makeText(Mainactivity, "Passwords do not match", Toast.LENGTH_SHORT).show();
+        if (!signupModel.password()) {
+            Mainactivity.onError("Password is not valid");
             return;
         }
-
-//      insert into database
-        signupModel.firstName = firstname;
-        signupModel.lastName = lastname;
-        signupModel.email = email;
-        signupModel.password = password;
-
-//      if user already exists
-        if (database.checkUser(signupModel.email)) {
-            Toast.makeText(Mainactivity, "User already exists", Toast.LENGTH_SHORT).show();
-        } else {
-            database.SignupInsertData(signupModel);
-
-//          if(Mainactivity != null){
-            Toast.makeText(Mainactivity, "Signup Successful", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(Mainactivity, LoginActivity.class);
-            intent.putExtra("email", email);
-            Mainactivity.startActivity(intent);
-//            }else{
-//                Mainactivity.onError("Signup Failed");
-//            }
+        if (!signupModel.confirmPassword(signupModel.getConfirmPassword())) {
+            Mainactivity.onError("Password and Confirm Password is not same");
+            return;
         }
+        if (database.checkUser(signupModel.getEmail())) {
+            Mainactivity.onError("User Already Exists");
+            return;
+        }
+        database.SignupInsertData(signupModel);
 
+        Mainactivity.onSuccess("Signup Successful");
     }
-
 }
 
 

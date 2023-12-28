@@ -8,7 +8,7 @@
     android:gravity="center"
     android:background="#A3D9DB"
     android:id="@+id/splash_screen"
-    tools:context=".UI.SplashActivity">
+   >
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animationView"
@@ -22,7 +22,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Splash Screen"
+        android:text="My Todo App"
         android:gravity="center"
         android:textStyle="bold"
         android:textSize="30sp"/>

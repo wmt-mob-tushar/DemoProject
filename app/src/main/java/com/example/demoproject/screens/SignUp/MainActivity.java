@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
@@ -11,14 +12,14 @@ import android.widget.Toast;
 
 import com.example.demoproject.R;
 import com.example.demoproject.screens.Login.LoginActivity;
-import com.example.demoproject.screens.SignUp.SignUpPresenter;
-import com.example.demoproject.screens.SignUp.SignupListener;
-import com.example.demoproject.screens.SignUp.SignupModel;
 
-public class MainActivity extends AppCompatActivity implements SignupListener{
+public class MainActivity extends AppCompatActivity implements SignupListener, View.OnClickListener{
     Button button,signuptologinbutton;
     TextView firstnameEditView, lastnameEditView, emailEditView, passwordEditView, confirmPasswordEditView;
+    String firstname, lastname, email, password, confirmPassword;
+    SignupModel signupModel;
     SignUpPresenter signUpPresenter;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,41 +31,15 @@ public class MainActivity extends AppCompatActivity implements SignupListener{
         //this line of code prevents the keyboard from pushing the layout up
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
-        button.setOnClickListener(view -> {
-//            SignUp activity using MVP Structure
-
-            String firstname = firstnameEditView.getText().toString();
-            String lastname = lastnameEditView.getText().toString();
-            String email = emailEditView.getText().toString();
-            String password = passwordEditView.getText().toString();
-            String confirmPassword = confirmPasswordEditView.getText().toString();
-
-            //just for debugging
-            System.out.println("SignUpActivityDebugger : firstname : " + firstname + " lastname : " + lastname + " email : " + email + " password : " + password + " confirmPassword : " + confirmPassword);
-
-            SignupModel signupModel = new SignupModel(firstname, lastname, email, password);
-
-            //Presenter
-            signUpPresenter = new SignUpPresenter(this, signupModel);
-
-            //call signup method
-            SignUpPresenter.signup(firstname, lastname, email, password, confirmPassword);
-        });
-
-        signuptologinbutton.setOnClickListener(view -> {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-        });
+        button.setOnClickListener(this);
+        signuptologinbutton.setOnClickListener(this);
     }
 
     public void initializeView() {
-        //sign up button
         button = (Button) findViewById(R.id.btn_signup);
 
-        //signup to login btn
         signuptologinbutton = (Button) findViewById(R.id.btn_signup_to_login);
 
-        //name, email, password, confirm password
         firstnameEditView = (TextView) findViewById(R.id.edt_first);
         lastnameEditView = (TextView) findViewById(R.id.edt_lastname);
         emailEditView = (TextView) findViewById(R.id.edt_email);
@@ -73,13 +48,51 @@ public class MainActivity extends AppCompatActivity implements SignupListener{
     }
 
     @Override
-    public void onEmailError() {
-        Toast.makeText(this, "Email error", Toast.LENGTH_SHORT).show();
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_signup:
+                SignUpView();
+                break;
+            case R.id.btn_signup_to_login:
+                intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
-    @Override
+
+    public void SignUpView() {
+        firstname = firstnameEditView.getText().toString();
+        lastname = lastnameEditView.getText().toString();
+        email = emailEditView.getText().toString();
+        password = passwordEditView.getText().toString();
+        confirmPassword = confirmPasswordEditView.getText().toString();
+
+        signupModel = new SignupModel();
+
+        signupModel.setFirstName(firstname);
+        signupModel.setLastName(lastname);
+        signupModel.setEmail(email);
+        signupModel.setPassword(password);
+        signupModel.setConfirmPassword(confirmPassword);
+
+        signUpPresenter = new SignUpPresenter(this, signupModel);
+        signUpPresenter.signup(signupModel);
+    }
+
     public void onSuccess(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+
+        firstnameEditView.setText("");
+        lastnameEditView.setText("");
+        emailEditView.setText("");
+        passwordEditView.setText("");
+        confirmPasswordEditView.setText("");
+
+        intent = new Intent(this, LoginActivity.class);
+        intent.putExtra("email", email);
+        startActivity(intent);
     }
+
     public void onError(String invalidInput) {
         Toast.makeText(this, invalidInput, Toast.LENGTH_SHORT).show();
     }

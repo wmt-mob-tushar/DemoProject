@@ -5,12 +5,13 @@
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    tools:context=".screens.SignUp.MainActivity"
     >
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/sign_up"
         android:textSize="34sp"
@@ -27,7 +28,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginHorizontal="20dp"
         android:layout_marginVertical="10dp"
@@ -180,17 +181,5 @@
             android:textColor="#fff"
             style="?android:attr/buttonBarButtonStyle" />
     </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Invalid input"
-        android:textColor="#FF0000"
-        android:gravity="center"
-        android:id="@+id/txt_invalid"
-        android:visibility="gone"
-        android:textSize="15sp"
-        android:textStyle="bold"
-       />
 
 </LinearLayout>

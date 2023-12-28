@@ -1,134 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".screens.Update.UpdateActivity"
     android:orientation="vertical">
 
-    <!--    custom toolbar-->
-    <com.google.android.material.appbar.AppBarLayout
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints"
-        >
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="MissingConstraints"
-            android:background="#4076D4"
-            />
-    </com.google.android.material.appbar.AppBarLayout>
+        android:gravity="center"
+        android:text="Update Profile"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:layout_margin="20dp"/>
 
+   <ImageView
+       android:id="@+id/imageView"
+       android:layout_width="match_parent"
+       android:layout_height="200dp"
+       android:layout_gravity="center"
+       android:src="@drawable/user"
+       android:contentDescription="Update"/>
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:layout_marginHorizontal="20dp"
+       android:layout_marginVertical="10dp"
+       android:baselineAligned="false">
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_weight="1"
+          android:orientation="vertical"
+          android:layout_marginEnd="10dp">
+
+         <TextView
+             android:id="@+id/tv_first_name"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginVertical="8dp"
+             android:text="@string/first_name"
+             android:textColorHint="@color/black" />
+
+         <EditText
+             android:id="@+id/et_first_name_update"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:background="@drawable/custom_input_background"
+             android:ems="10"
+             android:inputType="text"
+             android:padding="10dp"
+             android:hint="@string/first_name"
+             android:autofillHints="" />
+
+      </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_weight="1"
+          android:orientation="vertical">
+
+         <TextView
+             android:id="@+id/txt_lastname"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:text="@string/last_name"
+             android:layout_marginVertical="8dp"/>
+
+         <EditText
+             android:id="@+id/et_last_name_update"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:background="@drawable/custom_input_background"
+             android:ems="10"
+             android:inputType="text"
+             android:padding="10dp"
+             android:hint="@string/last_name"
+             android:autofillHints="" />
+
+      </LinearLayout>
+
+   </LinearLayout>
+
+   <TextView
+       android:id="@+id/txt_email"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="@string/email"
+       android:layout_marginHorizontal="20dp"
+       />
+
+   <EditText
+       android:id="@+id/et_email_update"
+       android:layout_width="match_parent"
+       android:layout_height="40dp"
+       android:ems="10"
+       android:inputType="textEmailAddress"
+       android:background="@drawable/custom_input_background"
+       android:padding="10dp"
+       android:layout_marginVertical="10dp"
+       android:layout_marginHorizontal="20dp"
+       android:autofillHints="Email"
+       />
+
+   <TextView
+       android:id="@+id/txt_password"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="@string/password"
+       android:layout_marginHorizontal="20dp"/>
+
+   <EditText
+       android:id="@+id/et_password_update"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:ems="10"
+       android:inputType="textPassword"
+       android:background="@drawable/custom_input_background"
+       android:padding="10dp"
+       android:layout_marginVertical="10dp"
+       android:layout_marginHorizontal="20dp"
+       android:autofillHints="Email" />
 
 
    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:layout_marginTop="25dp"
-       android:orientation="vertical"
-       android:layout_margin="20sp"
+       android:orientation="horizontal"
+       android:gravity="center"
+       android:paddingHorizontal="20sp"
        >
 
-       <TextView
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:text="User Details"
-           android:textSize="40sp"
-           android:gravity="center"
-           android:textStyle="bold" />
+      <Button
+          android:id="@+id/btn_update"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginHorizontal="20dp"
+          android:layout_marginVertical="10dp"
+          android:backgroundTint="#2B76E6"
+          android:text="Update"
+          app:cornerRadius="8dp"
+          android:textColor="#fff"
+          style="?android:attr/buttonBarButtonStyle" />
 
-       <TextView
-           android:id="@+id/tv_user_id"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-              android:text="User Id"
-              android:textSize="24sp" />
-
-
-       <TextView
-           android:id="@+id/tv_first_name"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:text="First Name"
-           android:textSize="24sp" />
-
-       <EditText
-           android:id="@+id/et_first_name_update"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:hint="First Name"
-           android:padding="10dp"
-           android:layout_marginVertical="10dp"
-           android:background="#6D95B1E2"/>
-
-       <TextView
-           android:id="@+id/tv_last_name"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:text="Last Name"
-           android:textSize="24sp" />
-
-       <EditText
-           android:id="@+id/et_last_name_update"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:hint="Last Name"
-           android:padding="10dp"
-           android:layout_marginVertical="10dp"
-           android:background="#6D95B1E2"/>
-
-       <TextView
-           android:id="@+id/tv_email"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:text="Email"
-           android:textSize="24sp" />
-
-       <EditText
-           android:id="@+id/et_email_update"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:hint="Email"
-           android:padding="10dp"
-           android:layout_marginVertical="10dp"
-           android:background="#6D95B1E2"/>
-
-
-       <TextView
-           android:id="@+id/tv_password"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:text="Password"
-           android:textSize="24sp" />
-
-       <EditText
-           android:id="@+id/et_password_update"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:hint="Email"
-           android:padding="10dp"
-           android:layout_marginVertical="10dp"
-           android:background="#6D95B1E2"/>
-
-       <Button
-           android:id="@+id/btn_update"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:text="Update"
-           android:textSize="24sp"/>
-
-       <Button
-           android:id="@+id/btn_logout"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:text="Logout"
-           android:textSize="24sp"
-           android:layout_marginTop="10dp"
-           />
-
+      <Button
+          android:id="@+id/btn_logout"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginHorizontal="20dp"
+          android:layout_marginVertical="10dp"
+          android:backgroundTint="#EB1D0E"
+          android:text="Logout"
+          app:cornerRadius="8dp"
+          android:textColor="#fff"
+          style="?android:attr/buttonBarButtonStyle" />
    </LinearLayout>
 
 </LinearLayout>
