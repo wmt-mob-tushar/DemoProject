@@ -90,11 +90,8 @@ public class SQLiteDbHelper extends SQLiteOpenHelper {
     }
     public UpdateModel getUserDataOnID(Integer id){
         SQLiteDatabase database = this.getReadableDatabase();
-
         String query = "SELECT * FROM "+UserTable+" WHERE ID = '"+id+"'";
-
         UpdateModel UpdateModel = new UpdateModel();
-
         if(database.rawQuery(query, null).getCount() > 0){
             Cursor cursor = database.rawQuery(query, null);
             cursor.moveToFirst();
@@ -104,7 +101,6 @@ public class SQLiteDbHelper extends SQLiteOpenHelper {
             UpdateModel.email = cursor.getString(3);
             UpdateModel.password = cursor.getString(4);
         }
-
         return UpdateModel;
     }
     public void updateData(UpdateModel updateModel){

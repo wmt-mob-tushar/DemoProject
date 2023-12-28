@@ -50,7 +50,6 @@ public class RecycleTodoAdapter extends RecyclerView.Adapter<RecycleTodoAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         todoModel = arrayList.get(position);
         holder.title.setText(arrayList.get(position).title);
         holder.description.setText(arrayList.get(position).description);
@@ -85,7 +84,6 @@ public class RecycleTodoAdapter extends RecyclerView.Adapter<RecycleTodoAdapter.
                 }else {
                     title= etTitle.getText().toString();
                 }
-
                 if(etDescription.getText().toString().isEmpty()){
                     description = todoModel.description;
                 }else {
