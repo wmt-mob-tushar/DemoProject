@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.example.demoproject.R;
 import com.example.demoproject.database.SQLiteDbHelper;
+import com.example.demoproject.screens.Home.HomeActivity;
+import com.example.demoproject.screens.Login.LoginActivity;
 import com.example.demoproject.screens.SignUp.MainActivity;
 
 public class UpdateActivity extends AppCompatActivity implements UpdateListener, View.OnClickListener{
@@ -71,9 +73,10 @@ public class UpdateActivity extends AppCompatActivity implements UpdateListener,
                 editor.putBoolean("isFirstTime", false);
                 editor.apply();
 
-                intent = new Intent(this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent = new Intent(this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+                finish();
                 break;
         }
     }
@@ -101,19 +104,14 @@ public class UpdateActivity extends AppCompatActivity implements UpdateListener,
     @Override
     public void onSuccess(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-
-        SharedPreferences pref = this.getSharedPreferences("user_details", UpdateActivity.MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
-        editor.putBoolean("isFirstTime", false);
-        editor.apply();
-
-        intent = new Intent(this, MainActivity.class);
+        intent = new Intent(this, HomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+        finish();
     }
 
     @Override
     public void onError(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
-
 }

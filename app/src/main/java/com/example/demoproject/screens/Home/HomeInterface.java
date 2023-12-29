@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public interface HomeInterface {
     interface View {
-        void showTodoList(ArrayList<TodoModel> todoList);
+        void showTodoList(ArrayList<TodoModel> arrayList);
         void onSuccess(String message);
         void onError(String message);
     }

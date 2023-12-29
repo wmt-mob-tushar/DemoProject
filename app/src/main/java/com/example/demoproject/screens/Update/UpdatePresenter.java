@@ -19,7 +19,6 @@ public class UpdatePresenter {
     }
 
     public void update(UpdateModel UpdateModel){
-
         if(!UpdateModel.firstName()){
             UpdateActivity.onError("Invalid First Name");
             return;
@@ -36,9 +35,7 @@ public class UpdatePresenter {
             UpdateActivity.onError("Invalid Password");
             return;
         }
-
         database.updateData(UpdateModel);
-
         UpdateActivity.onSuccess("Update Successful");
     }
 }

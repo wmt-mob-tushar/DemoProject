@@ -34,13 +34,15 @@ public class SignUpPresenter{
             Mainactivity.onError("Password and Confirm Password is not same");
             return;
         }
-        if (database.checkUser(signupModel.getEmail())) {
-            Mainactivity.onError("User Already Exists");
+        if (database.checkUser(signupModel)) {
+            Mainactivity.onError("Email already exists");
             return;
         }
+
         database.SignupInsertData(signupModel);
 
         Mainactivity.onSuccess("Signup Successful");
+
     }
 }
 

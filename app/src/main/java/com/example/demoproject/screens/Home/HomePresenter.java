@@ -24,8 +24,8 @@ public class HomePresenter implements HomeInterface.Presenter{
     public void addTodo(TodoModel todomodel) {
         if(todomodel.isValid()){
             database.insertTodo(todomodel);
-            homeActivity.onSuccess("Todo Added");
             loadTodoList();
+            homeActivity.onSuccess("Todo Added Successfully");
         }else{
             homeActivity.onError("Please fill all the fields");
         }
@@ -35,8 +35,8 @@ public class HomePresenter implements HomeInterface.Presenter{
     public void updateTodo(TodoModel todo) {
         if(todo.isValid()){
             database.updateTodo(todo);
-            homeActivity.onSuccess("Todo Updated");
             loadTodoList();
+            homeActivity.onSuccess("Todo Updated Successfully");
         }else{
             homeActivity.onError("Please fill all the fields");
         }
@@ -45,7 +45,7 @@ public class HomePresenter implements HomeInterface.Presenter{
     @Override
     public void deleteTodo(TodoModel todo) {
         database.deleteTodo(todo.getId());
-        homeActivity.onSuccess("Todo Deleted");
         loadTodoList();
+        homeActivity.onSuccess("Todo Deleted");
     }
 }

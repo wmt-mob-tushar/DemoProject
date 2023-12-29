@@ -57,6 +57,7 @@ public class SQLiteDbHelper extends SQLiteOpenHelper {
     public void SignupInsertData(SignupModel signupModel){
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
+
         cv.put("FIRST_NAME",signupModel.firstName);
         cv.put("LAST_NAME", signupModel.lastName);
         cv.put("EMAIL" ,signupModel.email);
@@ -77,17 +78,21 @@ public class SQLiteDbHelper extends SQLiteOpenHelper {
             return false;
         }
     }
-    public boolean checkUser(String email) {
+    public boolean checkUser(SignupModel signupModel){
         SQLiteDatabase database = this.getReadableDatabase();
 
-        String query = "SELECT * FROM "+UserTable+" WHERE EMAIL = '"+email+"'";
+        String query = "SELECT * FROM "+UserTable+" WHERE EMAIL = '"+signupModel.getEmail()+"'";
 
         if(database.rawQuery(query, null).getCount() > 0){
+//            Cursor cursor = database.rawQuery(query, null);
+//            cursor.moveToFirst();
+//            signupModel.setId(cursor.getInt(0));
             return true;
         }else {
             return false;
         }
     }
+
     public UpdateModel getUserDataOnID(Integer id){
         SQLiteDatabase database = this.getReadableDatabase();
         String query = "SELECT * FROM "+UserTable+" WHERE ID = '"+id+"'";

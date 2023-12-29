@@ -13,10 +13,11 @@ import android.widget.Toast;
 
 import com.example.demoproject.R;
 import com.example.demoproject.screens.Home.HomeActivity;
+import com.example.demoproject.screens.SignUp.MainActivity;
 
 public class LoginActivity extends AppCompatActivity implements LoginListener, View.OnClickListener{
 
-    Button loginbutton;
+    Button loginbutton, logintosignupbutton;
     TextView emailEditView, passwordEditView;
     LoginModal loginModel;
     LoginPresenter loginPresenter;
@@ -30,24 +31,30 @@ public class LoginActivity extends AppCompatActivity implements LoginListener, V
 
         this.initializeView();
 
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-
         intent = getIntent();
         emailEditView.setText(intent.getStringExtra("email"));
 
         loginbutton.setOnClickListener(this);
+        logintosignupbutton.setOnClickListener(this);
     }
 
     public void initializeView() {
         loginbutton = findViewById(R.id.btn_login);
         emailEditView = findViewById(R.id.edt_email);
         passwordEditView = findViewById(R.id.edt_password);
+        logintosignupbutton = findViewById(R.id.btn_login_to_signup);
     }
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_login:
                 LoginView();
+                break;
+            case R.id.btn_login_to_signup:
+                intent = new Intent(this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
                 break;
         }
     }
@@ -70,6 +77,9 @@ public class LoginActivity extends AppCompatActivity implements LoginListener, V
     public void onSuccess(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 
+        emailEditView.setText("");
+        passwordEditView.setText("");
+
         SharedPreferences pref = this.getSharedPreferences("user_details", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         editor.putBoolean("isFirstTime", true);
@@ -77,11 +87,12 @@ public class LoginActivity extends AppCompatActivity implements LoginListener, V
         editor.apply();
 
         Intent intent = new Intent(this, HomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        finish();
     }
     @Override
     public void onError(String invalidInput) {
         Toast.makeText(this, invalidInput, Toast.LENGTH_SHORT).show();
     }
-
 }

@@ -3,6 +3,7 @@ package com.example.demoproject.screens.SignUp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.demoproject.R;
+import com.example.demoproject.screens.Home.HomeActivity;
 import com.example.demoproject.screens.Login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity implements SignupListener, View.OnClickListener{
@@ -27,9 +29,6 @@ public class MainActivity extends AppCompatActivity implements SignupListener, V
         setContentView(R.layout.activity_main);
 
         this.initializeView();
-
-        //this line of code prevents the keyboard from pushing the layout up
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         button.setOnClickListener(this);
         signuptologinbutton.setOnClickListener(this);
@@ -55,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements SignupListener, V
                 break;
             case R.id.btn_signup_to_login:
                 intent = new Intent(this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 break;
         }
@@ -89,8 +89,10 @@ public class MainActivity extends AppCompatActivity implements SignupListener, V
         confirmPasswordEditView.setText("");
 
         intent = new Intent(this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("email", email);
         startActivity(intent);
+//      finish();
     }
 
     public void onError(String invalidInput) {

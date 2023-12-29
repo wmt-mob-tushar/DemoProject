@@ -64,14 +64,38 @@
         android:layout_marginHorizontal="20dp"
         android:hint="Password" />
 
-    <Button
-        android:id="@+id/btn_login"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="10dp"
-        android:backgroundTint="#1E6EE4"
-        android:text="@string/login"
-        app:cornerRadius="10dp" />
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingHorizontal="20sp"
+        >
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:backgroundTint="#2B76E6"
+            android:text="@string/login"
+            app:cornerRadius="8dp"
+            android:textColor="#fff"
+            style="?android:attr/buttonBarButtonStyle" />
+
+        <Button
+            android:id="@+id/btn_login_to_signup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:backgroundTint="#2B76E6"
+            android:text="Go to SignUp"
+            app:cornerRadius="8dp"
+            android:textColor="#fff"
+            style="?android:attr/buttonBarButtonStyle" />
+    </LinearLayout>
 
 </LinearLayout>

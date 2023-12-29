@@ -50,11 +50,8 @@ public class HomeActivity extends AppCompatActivity implements HomeInterface.Vie
         CustomeToolbar();
 
         btnAddTodo.setOnClickListener(this);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        arrayList = database.getAllTodo();
-        adapter = new RecycleTodoAdapter(this,arrayList,homePresenter);
-        recyclerView.setAdapter(adapter);
+        homePresenter.loadTodoList();
     }
 
     private void initializeView() {
@@ -100,7 +97,7 @@ public class HomeActivity extends AppCompatActivity implements HomeInterface.Vie
         todoModel.setDescription(description);
 
         homePresenter.addTodo(todoModel);
-        showTodoList(arrayList);
+        homePresenter.loadTodoList();
         dialog.dismiss();
     }
 
@@ -117,6 +114,7 @@ public class HomeActivity extends AppCompatActivity implements HomeInterface.Vie
 
         profilebtn.setOnClickListener(view -> {
             intent = new Intent(HomeActivity.this, UpdateActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         });
     }
@@ -124,9 +122,7 @@ public class HomeActivity extends AppCompatActivity implements HomeInterface.Vie
     @Override
     public void onSuccess(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-        arrayList = database.getAllTodo();
-        adapter = new RecycleTodoAdapter(this,arrayList,homePresenter);
-        recyclerView.setAdapter(adapter);
+        homePresenter.loadTodoList();
     }
     @Override
     public void onError(String message) {

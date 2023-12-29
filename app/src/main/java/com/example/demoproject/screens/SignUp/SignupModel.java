@@ -1,16 +1,18 @@
 package com.example.demoproject.screens.SignUp;
 
 public class SignupModel {
+    public Integer id;
     public String firstName;
     public String lastName;
     public String email;
     public String password;
     private String confirmPassword;
 
-    public SignupModel() {
+    public SignupModel() {}
 
+    public Integer getId() {
+        return id;
     }
-
     //getter and setter
     public String getFirstName() {
         return firstName;
@@ -26,6 +28,9 @@ public class SignupModel {
     }
     public String getConfirmPassword() {
         return confirmPassword;
+    }
+    public void setId(Integer id) {
+        this.id = id;
     }
     public void setFirstName(String firstname) {
         this.firstName = firstname;
