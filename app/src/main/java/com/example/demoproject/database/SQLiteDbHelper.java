@@ -84,9 +84,6 @@ public class SQLiteDbHelper extends SQLiteOpenHelper {
         String query = "SELECT * FROM "+UserTable+" WHERE EMAIL = '"+signupModel.getEmail()+"'";
 
         if(database.rawQuery(query, null).getCount() > 0){
-//            Cursor cursor = database.rawQuery(query, null);
-//            cursor.moveToFirst();
-//            signupModel.setId(cursor.getInt(0));
             return true;
         }else {
             return false;

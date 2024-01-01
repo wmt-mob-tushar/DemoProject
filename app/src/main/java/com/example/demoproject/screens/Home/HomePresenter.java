@@ -13,13 +13,11 @@ public class HomePresenter implements HomeInterface.Presenter{
         HomePresenter.homeActivity = homeActivity;
         database = new SQLiteDbHelper(homeActivity);
     }
-
     @Override
     public void loadTodoList() {
         arrayList = database.getAllTodo();
         homeActivity.showTodoList(arrayList);
     }
-
     @Override
     public void addTodo(TodoModel todomodel) {
         if(todomodel.isValid()){

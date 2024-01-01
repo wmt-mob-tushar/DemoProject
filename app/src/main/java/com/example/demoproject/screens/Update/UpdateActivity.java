@@ -6,9 +6,12 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +22,6 @@ import com.example.demoproject.screens.Login.LoginActivity;
 import com.example.demoproject.screens.SignUp.MainActivity;
 
 public class UpdateActivity extends AppCompatActivity implements UpdateListener, View.OnClickListener{
-
     Button updatebtn, logoutbtn;
     EditText firstnameEditView, lastnameEditView, emailEditView, passwordEditView;
     String firstname, lastname, email, password;

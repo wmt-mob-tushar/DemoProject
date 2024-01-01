@@ -1,4 +1,6 @@
 package com.example.demoproject.screens.SignUp;
+import android.util.Log;
+
 import com.example.demoproject.database.SQLiteDbHelper;
 
 public class SignUpPresenter{
